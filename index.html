@@ -9,19 +9,19 @@
 <link rel="canonical" href="https://amrutp24.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Amrut Pagidipally">
-<meta property="og:description" content="I test what cloud vendors claim, then write down what I found. Senior CloudOps &amp; DevOps engineer, AWS Community Builder.">
+<meta property="og:description" content="Amrut Pagidipally, senior CloudOps and DevOps engineer and AWS Community Builder. Articles on AWS Lambda, Bedrock and Terraform, plus Terraform providers, modules and SRE tools.">
 <meta property="og:url" content="https://amrutp24.github.io/">
 <meta property="og:image" content="https://amrutp24.github.io/images/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Amrut Pagidipally">
-<meta name="twitter:description" content="I test what cloud vendors claim, then write down what I found. Senior CloudOps &amp; DevOps engineer, AWS Community Builder.">
+<meta name="twitter:description" content="Amrut Pagidipally, senior CloudOps and DevOps engineer and AWS Community Builder. Articles on AWS Lambda, Bedrock and Terraform, plus Terraform providers, modules and SRE tools.">
 <meta name="twitter:image" content="https://amrutp24.github.io/images/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-<meta name="description" content="Senior CloudOps &amp; DevOps engineer and AWS Community Builder. I test what cloud vendors claim and write down what I find. Terraform providers, SRE tooling, Lambda, Bedrock, GCP.">
+<meta name="description" content="Amrut Pagidipally, senior CloudOps and DevOps engineer and AWS Community Builder. Articles on AWS Lambda, Bedrock and Terraform, plus Terraform providers, modules and SRE tools.">
 <style>
 :root{
   --bg:#fffdf9;
@@ -79,9 +79,12 @@ code{
 .hero .who .dot{margin:0 .5em;color:var(--faint)}
 .hero h1{
   font-size:clamp(40px,6.6vw,72px);font-weight:400;line-height:1.02;
-  letter-spacing:-.018em;max-width:15ch;text-wrap:balance;
+  letter-spacing:-.018em;
 }
-.hero h1 em{font-style:italic;color:var(--mark)}
+.hero .role{
+  font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-size:.95rem;color:var(--muted);margin-top:14px;
+}
 
 /* diagram */
 .diagram{margin-top:44px}
@@ -223,29 +226,30 @@ footer button:hover{text-decoration-color:var(--mark)}
 <div class="page">
 
   <header class="hero">
-    <div class="who"><b>Amrut Pagidipally</b><span class="dot">·</span>Senior CloudOps &amp; DevOps engineer<span class="dot">·</span>AWS Community Builder<span class="dot">·</span>Texas</div>
-    <h1 class="display">I test what cloud vendors claim, <em>then write down what I found.</em></h1>
+    <h1 class="display">Amrut Pagidipally</h1>
+    <p class="role">Senior CloudOps and DevOps engineer in Texas. AWS Community Builder.</p>
   </header>
 
   <div class="intro">
     <p>AWS, GCP and Terraform for the day job. Outside of it I poke at new releases,
-       break things in my own account, and publish the results — including the parts
-       that didn't work. One of those write-ups got AWS to fix its own documentation
-       eight days later. Lately it has been Lambda durable functions, Bedrock
-       AgentCore, and Terraform providers for services that didn't have one.</p>
+       break things in my own account, and write about what I find. One of those posts
+       pointed out a gap in the Lambda developer guide, and AWS added the missing page
+       eight days later. Lately I've been working with Lambda durable functions and
+       Bedrock AgentCore, and writing Terraform providers for services that didn't
+       have one.</p>
     <p>The rest of my time goes to movies and one series too many.</p>
   </div>
 
 
   <section id="selected">
-    <h2>Selected</h2>
+    <h2>Selected writing</h2>
     <ul class="feature">
       <li>
         <h3><a href="https://amruteng.medium.com/i-blogged-about-an-aws-docs-gap-eight-days-later-aws-closed-it-f335d81d8a7e">I blogged about an AWS docs gap. Eight days later, AWS closed it.</a></h3>
-        <p>Building a human-in-the-loop agent pipeline on Lambda durable functions turned up
-           an undocumented IAM pattern for callbacks and SDK examples that no longer worked.
-           I wrote it up. The examples were removed and the developer guide gained a
-           callback-permissions page. Timeline included.</p>
+        <p>While building a human-in-the-loop agent pipeline on Lambda durable functions, I found
+           that the IAM permission callbacks need wasn't documented and that the SDK examples no
+           longer worked. Eight days after the post went up, AWS removed the examples and added a
+           callback permissions page to the developer guide. The post has the full timeline.</p>
   <figure class="diagram">
     <div class="scroll">
     <svg viewBox="0 0 640 236" role="img" aria-label="Architecture of the durable-agent-pipeline module">
@@ -299,66 +303,67 @@ footer button:hover{text-decoration-color:var(--mark)}
       <text x="569" y="213" text-anchor="middle" class="sub">published output</text>
     </svg>
     </div>
-    <figcaption>The pipeline in question, as the <a href="https://registry.terraform.io/modules/amrutp24/durable-agent-pipeline/aws/latest">durable-agent-pipeline</a>
-      module builds it. The undocumented permission was the red arrow: resuming a suspended run needs
-      <code>SendDurableExecutionCallback</code> on the <em>versioned</em> function ARN, which the docs never said.</figcaption>
+    <figcaption>The pipeline, as built by the <a href="https://registry.terraform.io/modules/amrutp24/durable-agent-pipeline/aws/latest">durable-agent-pipeline</a>
+      module. The red arrow is the callback that resumes a suspended run. It needs
+      <code>SendDurableExecutionCallback</code> on the versioned function ARN, which the docs didn't mention at the time.</figcaption>
   </figure>
         <div class="meta">August 2026<span class="sep">·</span>Medium<span class="sep">·</span><a href="https://builder.aws.com/content/3HKzWwiLnQ9YiXZDTUqpk0XQhFD/a-write-up-about-lambda-durable-functions-got-the-docs-fixed">also on AWS Builder Center</a></div>
       </li>
       <li>
         <h3><a href="https://amruteng.medium.com/i-wrote-a-linter-for-a-bug-that-cant-be-unit-tested-e296245eb39d">I wrote a linter for a bug that can't be unit tested</a></h3>
-        <p>Durable functions re-run your handler from line one on every resume, so anything
-           outside a <code>step()</code> runs again. Nothing enforces the rule, tests stay green,
-           and the bug surfaces when the workflow next wakes up — up to a year later.
-           So I built <a href="https://github.com/amrutp24/replayguard">replayguard</a>, and
-           validated it against 1,547 files of other people's code.</p>
+        <p>Durable functions re-run the handler from the start every time a workflow resumes, so
+           code outside a <code>step()</code> runs again. Nothing checks for this and unit tests
+           pass, so the bug only shows up when a workflow resumes, which can be up to a year later.
+           <a href="https://github.com/amrutp24/replayguard">replayguard</a> checks for it. I tested
+           it against 1,547 files of durable-function code from other projects.</p>
         <div class="meta">September 2026<span class="sep">·</span>Medium<span class="sep">·</span><a href="https://builder.aws.com/content/3IXAFXsyhurrsQmQFoBHLrQUviA/the-lambda-bug-that-shows-up-six-months-later">also on AWS Builder Center</a></div>
       </li>
       <li>
         <h3><a href="https://builder.aws.com/content/3BnCQ3tNlxDCGakjdtowPexN1dJ/aws-says-a-production-agent-is-now-two-api-calls-i-tested-that">AWS says a production agent is now two API calls. I tested that.</a></h3>
-        <p>The smallest real agent on the Bedrock AgentCore managed harness, then managed
-           with Terraform. The two calls work. What they hide: undocumented IAM permissions,
-           roughly 900 tokens of invisible scaffolding on every call, and a state file blind
-           to a billable resource.</p>
+        <p>I built the smallest agent I could on the Bedrock AgentCore managed harness and
+           managed it with Terraform. The two API calls do work. They also need IAM permissions
+           that aren't documented, add about 900 tokens of scaffolding to every call, and create
+           a billable resource that Terraform state doesn't track.</p>
         <div class="meta">July 2026<span class="sep">·</span>AWS Builder Center</div>
       </li>
     </ul>
   </section>
 
   <section id="built" class="built">
-    <h2>Built</h2>
+    <h2>Projects</h2>
 
-    <h3>Terraform providers, on the registry</h3>
+    <h3>Terraform providers</h3>
     <div class="rows">
       <div class="k"><a href="https://registry.terraform.io/providers/amrutp24/fireworks/latest">fireworks</a><small>v0.3.1</small></div>
-      <div class="v">GPU inference deployments, datasets and fine-tuning jobs on Fireworks AI as code. The only Fireworks provider on the registry.</div>
+      <div class="v">Manages GPU inference deployments, datasets and fine-tuning jobs on Fireworks AI. It is the only Fireworks provider on the Terraform Registry.</div>
       <div class="k"><a href="https://registry.terraform.io/providers/amrutp24/dataiku/latest">dataiku</a><small>v0.5.0</small></div>
-      <div class="v">Projects, code environments, connections, users and groups inside a Dataiku DSS instance. Go, against the DSS public REST API.</div>
+      <div class="v">Manages projects, code environments, connections, users and groups in a Dataiku DSS instance through the DSS public REST API.</div>
     </div>
 
-    <h3>Terraform modules, on the registry</h3>
+    <h3>Terraform modules</h3>
     <div class="rows">
       <div class="k"><a href="https://registry.terraform.io/modules/amrutp24/durable-agent-pipeline/aws/latest">durable-agent-pipeline</a><small>aws</small></div>
-      <div class="v">Human-in-the-loop AI agent pipeline on Lambda durable functions, including the two non-obvious IAM grants they need.</div>
+      <div class="v">Human-in-the-loop AI agent pipeline on Lambda durable functions, including the IAM grants durable functions need.</div>
       <div class="k"><a href="https://registry.terraform.io/modules/amrutp24/pubsub-bq-pipeline/google/latest">pubsub-bq-pipeline</a><small>google</small></div>
-      <div class="v">Pub/Sub → Cloud Run → BigQuery ingestion with OIDC push auth, dead-lettering and alerting.</div>
-      <div class="k"><a href="https://registry.terraform.io/modules/amrutp24/dss/aws/latest">dss</a><small>aws · google · azurerm</small></div>
-      <div class="v">Run Dataiku DSS on EC2, Compute Engine or an Azure VM with the same interface; <a href="https://registry.terraform.io/modules/amrutp24/dss-bootstrap/null/latest">dss-bootstrap</a> renders the shared install script.</div>
+      <div class="v">Ingestion from Pub/Sub through Cloud Run into BigQuery, with OIDC push auth, dead-lettering and alerting.</div>
+      <div class="k"><a href="https://registry.terraform.io/modules/amrutp24/dss/aws/latest">dss</a><small>aws, google, azurerm</small></div>
+      <div class="v">Runs Dataiku DSS on EC2, Compute Engine or an Azure VM, with the same inputs on each. <a href="https://registry.terraform.io/modules/amrutp24/dss-bootstrap/null/latest">dss-bootstrap</a> renders the install script they share.</div>
     </div>
 
     <h3>Tools</h3>
     <div class="rows">
       <div class="k"><a href="https://github.com/amrutp24/toil-radar">toil-radar</a></div>
-      <div class="v">Estimates how much time a team loses to toil — reverts, hotfixes, flaky CI, manual dispatches — from git history and GitHub Actions, and ranks what to automate first. <code>pip install toil-radar</code></div>
+      <div class="v">Estimates how much time a team loses to toil (reverts, hotfixes, flaky CI, manually triggered workflows) from git history and GitHub Actions, and ranks what to automate first. <code>pip install toil-radar</code></div>
       <div class="k"><a href="https://github.com/amrutp24/replayguard">replayguard</a></div>
-      <div class="v">Determinism checker for Lambda durable functions: static analysis for Python, TypeScript, Java and Rust, plus a harness that runs a handler twice under different clocks and diffs what it did.</div>
+      <div class="v">Determinism checker for Lambda durable functions. Static analysis for Python, TypeScript, Java and Rust, plus a harness that runs a handler twice under different clocks and compares the results.</div>
       <div class="k"><a href="https://github.com/amrutp24/scp-preflight">scp-preflight</a></div>
-      <div class="v">Test an AWS service control policy against your workloads before you attach it. Declare what roles must and must not be able to do; it runs the policy simulator and fails the PR if reality disagrees.</div>
+      <div class="v">Tests an AWS service control policy against your workloads before you attach it. You list what roles must and must not be able to do, and it runs each case through the IAM policy simulator in CI.</div>
     </div>
 
     <figure class="specimen">
-      <figcaption class="lead">What a run of scp-preflight looks like. A service control policy is an AWS-wide guardrail;
-        you list what your roles must and must not be able to do, and the tool checks the proposed policy against each one:</figcaption>
+      <figcaption class="lead">Example scp-preflight output. A service control policy (SCP) limits what every account in an
+        AWS organization can do. You list what your roles must and must not be able to do, and the tool checks the
+        proposed policy against each case.</figcaption>
 <pre><span class="ok">PASS</span>  deploys work in an approved region [lambda:CreateFunction on *]
 <span class="ok">PASS</span>  deploys work in an approved region [s3:CreateBucket on *]
 <span class="ok">PASS</span>  the second approved region also works [lambda:CreateFunction on *]
@@ -368,9 +373,9 @@ footer button:hover{text-decoration-color:var(--mark)}
         actual:   explicitDeny
         decided by: the SCP hierarchy (the API does not say which policy)
 4/5 checks passed</pre>
-      <figcaption>The last check fails: this policy would block creating IAM roles everywhere, because the
-        carve-out for global services was left out. That failure shows up in the pull request, before the
-        policy is attached — instead of at 3am.</figcaption>
+      <figcaption>The last check fails because the policy is missing the exception for global services, so it
+        would block creating IAM roles in every region. The tool reports this in the pull request, before the
+        policy is attached.</figcaption>
     </figure>
   </section>
 
@@ -395,18 +400,18 @@ footer button:hover{text-decoration-color:var(--mark)}
   </section>
 
   <section id="credentials">
-    <h2>Credentials</h2>
+    <h2>Certifications</h2>
     <ul class="pairs">
-      <li><span class="org">AWS</span><span class="v">Community Builder <span>· since March 2026</span></span></li>
-      <li><span class="org">Google Cloud</span><span class="v">Professional Cloud Architect <span>· Associate Cloud Engineer</span></span></li>
-      <li><span class="org">Linux Foundation</span><span class="v">Certified Kubernetes Administrator <span>· Prometheus Certified Associate</span></span></li>
+      <li><span class="org">AWS</span><span class="v">Community Builder <span>since March 2026</span></span></li>
+      <li><span class="org">Google Cloud</span><span class="v">Professional Cloud Architect, Associate Cloud Engineer</span></li>
+      <li><span class="org">Linux Foundation</span><span class="v">Certified Kubernetes Administrator, Prometheus Certified Associate</span></li>
       <li><span class="org">HashiCorp</span><span class="v">Terraform Associate</span></li>
       <li><span class="org">Microsoft</span><span class="v">Azure Fundamentals</span></li>
     </ul>
   </section>
 
   <section id="elsewhere">
-    <h2>Elsewhere</h2>
+    <h2>Contact</h2>
     <ul class="pairs">
       <li><span class="org">GitHub</span><span class="v"><a href="https://github.com/amrutp24">amrutp24</a></span></li>
       <li><span class="org">Medium</span><span class="v"><a href="https://amruteng.medium.com">amruteng.medium.com</a></span></li>
@@ -418,8 +423,8 @@ footer button:hover{text-decoration-color:var(--mark)}
   </section>
 
   <footer>
-    <span>Amrut Pagidipally · one HTML file, no dependencies</span>
-    <button id="theme" type="button">invert</button>
+    <span>© 2026 Amrut Pagidipally</span>
+    <button id="theme" type="button">Light / dark</button>
   </footer>
 
 </div>
